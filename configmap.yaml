@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-cluster-configmap
+data:
+  redis.conf: |
+    # Redis configuration
+    bind 0.0.0.0
+    protected-mode no
+    port 6379
+    cluster-enabled yes
+    cluster-config-file nodes.conf
+    cluster-node-timeout 5000
+    appendonly yes
+
+  update-node.sh: |
+    #!/bin/sh
+    # Custom script to update Redis node configuration
+    # This can include commands to ensure the Redis cluster nodes are correctly configured
+    echo "Updating Redis node configuration..."
+    # Additional setup commands can be added here
+    exec "$@"
